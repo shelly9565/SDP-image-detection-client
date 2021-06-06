@@ -4,15 +4,12 @@ export default makeStyles({
   card: {
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     borderRadius: '15px',
+    height: '100%',
     position: 'relative',
   },
-  menuBtn: {
-    backgroundColor: 'white',
-    borderRadius: '15px',
-  },
-  textAlign: {
-    textAlign: 'center',
+  gaugeChart: {
+    fontFamily: 'sans-serif',
   },
 });

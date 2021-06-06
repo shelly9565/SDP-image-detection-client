@@ -1,65 +1,59 @@
-import React, { useState, useEffect } from 'react';
-import { Container, AppBar, Typography, Grow, Grid } from '@material-ui/core';
-import { useDispatch } from 'react-redux'
+import React, { useEffect } from 'react';
+import { Redirect, Route, Switch } from 'react-router';
+import { useDispatch, useSelector } from 'react-redux';
+import { Container, AppBar, Tabs, Tab } from '@material-ui/core';
 
-import { getPosts } from './actions/posts'
-import Posts from './components/Posts/Posts';
-import Form from './components/Form/Form';
-import Info from './components/Info/Info';
-import sela from './images/sela.JPG'
+import { getPosts } from './actions/posts';
+import sela from './images/sela.jpeg';
 import useStyles from './styles';
-
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
+import { Link } from 'react-router-dom';
+import EmotionsPage from './pages/EmotionsPage';
+import MaskPage from './pages/MaskPage';
 
 const App = () => {
-    const [currentId, setCurrentId] = useState(null);
-    const classes = useStyles();
-    const dispatch = useDispatch();
+  const posts = useSelector((state) => state.posts);
+  const dispatch = useDispatch();
+  const classes = useStyles();
 
-    const [open, setOpen] = React.useState(false);
+  useEffect(() => {
+    dispatch(getPosts());
+  }, [dispatch]);
 
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
-
-    const handleClose = () => {
-        setOpen(false);
-    };
-
-    useEffect(() => {
-        dispatch(getPosts());
-    }, [currentId, dispatch]);
-
-    return (
-        <Container>
-            <AppBar className={classes.appBar} position="static" color="inherit">
-                <img className={classes.image} src={sela} alt="memories" height="60" />
-                <Typography className={classes.heading} variant="h2" align="center">
-                    SDP
-                </Typography>
+  return (
+    <Container>
+      <Route
+        path="/"
+        render={({ location }) => (
+          <>
+            <AppBar className={classes.appBar} position="static">
+              <img src={sela} alt="sela" height="48" />
+              <Tabs value={location.pathname} textColor="primary">
+                <Tab label="#2" value="/mask" component={Link} to="/mask" />
+                <Tab
+                  label="#1"
+                  value="/emotions"
+                  component={Link}
+                  to="/emotions"
+                />
+              </Tabs>
             </AppBar>
 
-
-            <Grow in>
-                <Container>
-                    <Grid className={classes.mainContainer} container justify="space-between" alignItems="stretch" spacing={3}>
-                        <Grid item xs={12} sm={7}>
-                            <Posts setCurrentId={setCurrentId} />
-                        </Grid>
-                        <Grid xs={12} sm={4} >
-                            <Info></Info>
-                            <Form currentId={currentId} setCurrentId={setCurrentId} />
-                        </Grid>
-                    </Grid>
-                </Container>
-            </Grow>
-        </Container>
-    );
-}
+            <Switch>
+              <Route
+                path="/emotions"
+                render={(props) => <EmotionsPage {...props} posts={posts} />}
+              />
+              <Route
+                path="/mask"
+                render={(props) => <MaskPage {...props} posts={posts} />}
+              />
+              <Redirect from="/" exact to="/emotions" />
+            </Switch>
+          </>
+        )}
+      />
+    </Container>
+  );
+};
 
 export default App;

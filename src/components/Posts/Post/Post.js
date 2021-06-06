@@ -1,36 +1,46 @@
 import React from 'react';
-import useStyles from './styles';
-import { Card, CardActions, CardContent, CardMedia, Button, Typography } from '@material-ui/core';
-import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
-import DeleteIcon from '@material-ui/icons/Delete';
-import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
+import { Card, CardContent, CardMedia, Typography } from '@material-ui/core';
 import moment from 'moment';
-import { useDispatch } from 'react-redux';
-import { deletePost } from '../../../actions/posts';
 
-const Post = ({ post, setCurrentId }) => {
-    const dispatch = useDispatch();
-    const classes = useStyles();
+import useStyles from './styles';
 
-    return (
-        <Card className={classes.card}>
-            <CardMedia className={classes.media} image={post.selectedFile || 'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png'} title={post.title} />
-            <div className={classes.overlay}>
-                <Typography variant="body2">{moment(post.createdAt).fromNow()}</Typography>
-            </div>
-            <div className={classes.overlay2}>
-                <Button style={{ color: 'white' }} size="small" onClick={() => { setCurrentId(post._id) }}><MoreHorizIcon fontSize="default" /></Button>
-            </div>
-            <Typography className={classes.details} gutterBottom variant="h5" component="h2">{post.fullName}</Typography>
-            <CardContent className={classes.grid}>
-                <Typography variant="body2" color="textSecondary" component="p">10% sad</Typography>
-                <Typography variant="body2" color="textSecondary" component="p">90% happy</Typography>
-            </CardContent>
-            <CardActions className={classes.cardActions}>
-                <Button size="small" color="primary" onClick={() => dispatch(deletePost(post._id))}><DeleteIcon fontSize="small" /> Delete</Button>
-            </CardActions>
-        </Card>
-    );
-}
+const Post = ({ post }) => {
+  const classes = useStyles();
+
+  return (
+    <Card className={classes.card}>
+      <CardMedia
+        className={classes.media}
+        image={
+          post.url ||
+          'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png'
+        }
+      />
+
+      <div className={classes.overlay}>
+        <Typography variant="subtitle2">
+          {moment(post.createdAt).fromNow()}
+        </Typography>
+      </div>
+
+      <CardContent className={classes.details}>
+        <Typography variant="body2" color="primary">
+          {(
+            post.data.face_detection.faceAttributes.emotion.sadness * 100
+          ).toFixed(1)}
+          % 🙁
+        </Typography>
+
+        <Typography variant="body2" color="secondary">
+          🙂{' '}
+          {(
+            post.data.face_detection.faceAttributes.emotion.happiness * 100
+          ).toFixed(1)}
+          %
+        </Typography>
+      </CardContent>
+    </Card>
+  );
+};
 
 export default Post;
