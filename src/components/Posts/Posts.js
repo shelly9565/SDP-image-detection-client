@@ -5,7 +5,7 @@ import Post from './Post/Post';
 
 const Posts = ({ posts }) => {
   return (
-    <GridList cellHeight={160} cols={3}>
+    <GridList cellHeight={160} cols={6}>
       {posts.map((p) => (
         <GridListTile key={p.id} cols={1}>
           <Post post={p} />

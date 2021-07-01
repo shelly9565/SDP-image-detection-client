@@ -10,7 +10,7 @@ export default makeStyles({
     position: 'relative',
   },
   media: {
-    paddingTop: '56.25%',
+    paddingTop: '175%',
     backgroundColor: 'rgba(0, 0, 0, 0.375)',
     backgroundBlendMode: 'darken',
   },
@@ -23,5 +23,7 @@ export default makeStyles({
   details: {
     display: 'flex',
     justifyContent: 'space-between',
+
+
   },
 });

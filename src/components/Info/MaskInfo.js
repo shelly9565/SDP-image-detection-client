@@ -9,6 +9,7 @@ import Grid from '@material-ui/core/Grid';
 
 import useStyles from './styles';
 import { Typography } from '@material-ui/core';
+import Modal from '../modal/Modal';
 
 const MaskInfo = ({ posts }) => {
   const [safest, setSafest] = useState();
@@ -50,36 +51,10 @@ const MaskInfo = ({ posts }) => {
           </Button>
         </div>
       </Grid>
+      <Modal content={safest} showModal={showSafest} setShowModal={setShowSafest} title="You are the SAFEST person out here!" >
 
-      <Dialog
-        classes={{ paper: classes.card }}
-        open={showSafest}
-        onClose={() => setShowSafest(false)}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title" className={classes.textAlign}>
-          <Typography variant="body1" color="primary">
-            You are the SAFEST person out here!
-          </Typography>
-        </DialogTitle>
+      </Modal>
 
-        <DialogContent>
-          {!safest ? (
-            <CircularProgress />
-          ) : (
-            <img src={safest.url} alt="" height="300" />
-          )}
-        </DialogContent>
-
-        <DialogActions>
-          <Button onClick={() => setShowSafest(false)} color="primary">
-            <Typography variant="button" display="block">
-              OK
-            </Typography>
-          </Button>
-        </DialogActions>
-      </Dialog>
     </div>
   );
 };

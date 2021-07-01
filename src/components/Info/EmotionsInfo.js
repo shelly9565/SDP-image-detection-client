@@ -9,6 +9,7 @@ import Grid from '@material-ui/core/Grid';
 
 import useStyles from './styles';
 import { Typography } from '@material-ui/core';
+import Modal from '../modal/Modal';
 
 const EmotionsInfo = ({ posts }) => {
   const [happiest, setHappiest] = useState();
@@ -19,11 +20,14 @@ const EmotionsInfo = ({ posts }) => {
     let happy;
 
     if (posts.length) {
-      happy = posts.reduce((prev, current) =>
-        prev.data.face_detection.faceAttributes.emotion.happiness >
-        current.data.face_detection.faceAttributes.emotion.happiness
-          ? prev
-          : current
+      happy = posts.reduce((prev, current) => {
+        if (prev.data.face_detection || current.data.face_detection) return prev;
+        else
+          return prev.data.face_detection && current.data.face_detection && prev.data.face_detection.faceAttributes.emotion.happiness >
+            current.data.face_detection.faceAttributes.emotion.happiness
+            ? prev
+            : current
+      }
       );
     }
 
@@ -51,37 +55,10 @@ const EmotionsInfo = ({ posts }) => {
           </Button>
         </div>
       </Grid>
+      <Modal content={happiest} showModal={showHappiest} setShowModal={setShowHappiest} title="You are the HAPPIEST person out here!">
 
-      <Dialog
-        classes={{ paper: classes.card }}
-        open={showHappiest}
-        onClose={() => setShowHappiest(false)}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle className={classes.textAlign} id="alert-dialog-title">
-          <Typography variant="body1" color="secondary">
-            You are the HAPPIEST person out here!
-          </Typography>
-        </DialogTitle>
-
-        <DialogContent>
-          {!happiest ? (
-            <CircularProgress />
-          ) : (
-            <img src={happiest.url} alt="" height="300" />
-          )}
-        </DialogContent>
-
-        <DialogActions>
-          <Button onClick={() => setShowHappiest(false)} color="secondary">
-            <Typography variant="button" display="block">
-              OK
-            </Typography>
-          </Button>
-        </DialogActions>
-      </Dialog>
-    </div>
+      </Modal>
+    </div >
   );
 };
 
