@@ -15,4 +15,9 @@ export default makeStyles({
     width: '900px',
     height: '500px'
   },
+  pieChart: {
+    width: '300px',
+    fontFamily: 'rubik',
+    fontSize: '7px',
+  }
 });

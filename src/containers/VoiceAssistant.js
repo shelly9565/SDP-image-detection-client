@@ -2,9 +2,8 @@
 
 import React, { useEffect, useState } from 'react'
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
-import { io } from "socket.io-client";
 import Modal from '../components/modal/Modal'
-
+import socket from '../api/socket'
 const commands = [
     {
         command: 'hey silly',
@@ -20,7 +19,6 @@ export const VoiceAssistant = ({ posts, children }) => {
     const [chosen, setChosen] = useState(null)
     const [showModal, setshowModal] = useState(false)
     const { transcript } = useSpeechRecognition({ commands })
-    const socket = io("http://sdpimagedetection.com:80")
     useEffect(() => {
         if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
             alert('microphone not working check browser support ')
@@ -29,18 +27,9 @@ export const VoiceAssistant = ({ posts, children }) => {
             console.log(`microphone is connected`)
             SpeechRecognition.startListening({ continuous: true });
         }
-
-        socket.connect()
-        socket.on('connect', () => {
-            console.log('socket is connected ');
-        })
-        socket.on('error', (err) => {
-            console.log('socket is not connected ', err);
-        })
         return () => {
             socket.close();
         }
-
     }, [])
     useEffect(() => {
         console.log(`posts`, posts)
