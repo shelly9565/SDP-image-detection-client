@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles({
-  card: {
+  flexDiv: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -12,4 +12,7 @@ export default makeStyles({
   gaugeChart: {
     fontFamily: 'sans-serif',
   },
+  gaugeChartContainer: {
+    width: '400px',
+  }
 });

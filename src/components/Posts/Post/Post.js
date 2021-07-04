@@ -17,13 +17,9 @@ const Post = ({ post }) => {
         }
       />
 
-      <div className={classes.overlay}>
-        <Typography variant="subtitle2">
-          {moment(post.createdAt).fromNow()}
-        </Typography>
-      </div>
 
-      <CardContent className={classes.details}>
+
+      {post.data.face_detection && <CardContent className={classes.details}>
         <Typography variant="body2" color="primary">
           {(
             post.data.face_detection.faceAttributes.emotion.sadness * 100
@@ -38,7 +34,7 @@ const Post = ({ post }) => {
           ).toFixed(1)}
           %
         </Typography>
-      </CardContent>
+      </CardContent>}
     </Card>
   );
 };

@@ -10,21 +10,20 @@ const EmotionsChart = ({ posts }) => {
 
   useEffect(() => {
     let happy = 0;
-
     posts.forEach((p) => {
-      if (
+      if (p.data.face_detection &&
         p.data.face_detection.faceAttributes.emotion.happiness >
         p.data.face_detection.faceAttributes.emotion.sadness
       )
         happy++;
     });
-
+    console.log(`happy`, happy)
     setHappinessRatio(happy / posts.length);
   }, [posts]);
 
   return (
     <Grid container justify="center">
-      <Card className={classes.card}>
+      <div className={classes.gaugeChartContainer}>
         <GaugeChart
           id="gauge-chart1"
           className={classes.gaugeChart}
@@ -35,7 +34,7 @@ const EmotionsChart = ({ posts }) => {
           animDelay={0}
           formatTextValue={(value) => value + '% Happy'}
         />
-      </Card>
+      </div>
     </Grid>
   );
 };

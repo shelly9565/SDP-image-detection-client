@@ -9,6 +9,8 @@ import useStyles from './styles';
 import { Link } from 'react-router-dom';
 import EmotionsPage from './pages/EmotionsPage';
 import MaskPage from './pages/MaskPage';
+import { VoiceAssistant } from './containers/VoiceAssistant';
+import VideoPage from './pages/VideoPage';
 
 const App = () => {
   const posts = useSelector((state) => state.posts);
@@ -24,10 +26,11 @@ const App = () => {
       <Route
         path="/"
         render={({ location }) => (
-          <>
+          <VoiceAssistant posts={posts}>
             <AppBar className={classes.appBar} position="static">
               <img src={sela} alt="sela" height="48" />
               <Tabs value={location.pathname} textColor="primary">
+                <Tab label="#3" value="/video" component={Link} to="/video" />
                 <Tab label="#2" value="/mask" component={Link} to="/mask" />
                 <Tab
                   label="#1"
@@ -35,6 +38,7 @@ const App = () => {
                   component={Link}
                   to="/emotions"
                 />
+
               </Tabs>
             </AppBar>
 
@@ -47,9 +51,13 @@ const App = () => {
                 path="/mask"
                 render={(props) => <MaskPage {...props} posts={posts} />}
               />
+              <Route
+                path="/video"
+                render={(props) => <VideoPage {...props} posts={posts} />}
+              />
               <Redirect from="/" exact to="/emotions" />
             </Switch>
-          </>
+          </VoiceAssistant>
         )}
       />
     </Container>

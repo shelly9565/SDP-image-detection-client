@@ -20,7 +20,7 @@ const MaskChart = ({ posts }) => {
 
   return (
     <Grid container justify="center">
-      <Card className={classes.card}>
+      <div className={classes.gaugeChartContainer}>
         <GaugeChart
           id="gauge-chart2"
           className={classes.gaugeChart}
@@ -31,7 +31,7 @@ const MaskChart = ({ posts }) => {
           animDelay={0}
           formatTextValue={(value) => value + '% Safe'}
         />
-      </Card>
+      </div>
     </Grid>
   );
 };
