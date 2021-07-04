@@ -10,7 +10,7 @@ export default makeStyles({
     position: 'relative',
   },
   gaugeChart: {
-    fontFamily: 'sans-serif',
+    fontFamily: 'Rubik',
   },
   gaugeChartContainer: {
     width: '400px',

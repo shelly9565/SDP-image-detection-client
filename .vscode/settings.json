@@ -1,4 +1,7 @@
 {
-    "appService.defaultWebAppToDeploy": "/subscriptions/8d90101e-a016-46ef-8bbc-7e3b89d5ba3d/resourceGroups/SDPImageDetection/providers/Microsoft.Web/sites/SPDImageDetectionClient",
-    "appService.deploySubpath": "build"
+    "appService.deploySubpath": "build",
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ]
 }

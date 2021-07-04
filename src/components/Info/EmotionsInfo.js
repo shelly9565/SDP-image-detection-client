@@ -41,22 +41,7 @@ const EmotionsInfo = ({ posts }) => {
 
   return (
     <div>
-      <Grid container justify="center">
-        <div>
-          <Button
-            className={classes.menuBtn}
-            variant="outlined"
-            color="secondary"
-            onClick={() => handleTheHappiestClick()}
-          >
-            <Typography variant="button" display="block">
-              The Happiest 🙂
-            </Typography>
-          </Button>
-        </div>
-      </Grid>
       <Modal content={happiest} showModal={showHappiest} setShowModal={setShowHappiest} title="You are the HAPPIEST person out here!">
-
       </Modal>
     </div >
   );

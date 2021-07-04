@@ -27,7 +27,7 @@ const MaskChart = ({ posts }) => {
           nrOfLevels={20}
           percent={safenessRatio}
           colors={['#f50057', '#3f51b5']}
-          textColor={'#464A4F'}
+          textColor={'#EA9164'}
           animDelay={0}
           formatTextValue={(value) => value + '% Safe'}
         />

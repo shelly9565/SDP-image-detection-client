@@ -37,20 +37,7 @@ const MaskInfo = ({ posts }) => {
 
   return (
     <div>
-      <Grid container justify="center">
-        <div>
-          <Button
-            className={classes.menuBtn}
-            variant="outlined"
-            color="primary"
-            onClick={() => handleTheSafestClick()}
-          >
-            <Typography variant="button" display="block">
-              The Safest 😷
-            </Typography>
-          </Button>
-        </div>
-      </Grid>
+
       <Modal content={safest} showModal={showSafest} setShowModal={setShowSafest} title="You are the SAFEST person out here!" >
 
       </Modal>

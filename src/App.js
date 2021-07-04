@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Container, AppBar, Tabs, Tab } from '@material-ui/core';
 
 import { getPosts } from './actions/posts';
-import sela from './images/sela.jpeg';
+import selaIcon from './images/selaIcon.png';
 import useStyles from './styles';
 import { Link } from 'react-router-dom';
 import EmotionsPage from './pages/EmotionsPage';
@@ -22,24 +22,26 @@ const App = () => {
   }, [dispatch]);
 
   return (
-    <Container>
+    <Container maxWidth='75%'>
       <Route
         path="/"
         render={({ location }) => (
           <VoiceAssistant posts={posts}>
             <AppBar className={classes.appBar} position="static">
-              <img src={sela} alt="sela" height="48" />
-              <Tabs value={location.pathname} textColor="primary">
-                <Tab label="#3" value="/video" component={Link} to="/video" />
-                <Tab label="#2" value="/mask" component={Link} to="/mask" />
-                <Tab
-                  label="#1"
+              <img src={selaIcon} alt="sela" height="42" className={classes.logoImage} />
+              <Tabs value={location.pathname} textColor="inherit" >
+                <Tab className={classes.tab} label="Video" value="/video" component={Link} to="/video" />
+                <Tab className={classes.tab} label="Masks" value="/mask" component={Link} to="/mask" />
+                <Tab className={classes.tab}
+                  label="Emotions"
                   value="/emotions"
                   component={Link}
                   to="/emotions"
                 />
 
               </Tabs>
+              <h4 className={classes.title}><span className={classes.whiteText}>SELA</span> |<span className={classes.whiteText}>DEVELOPER</span> |<span className={classes.whiteText}>  PRACTICE. 5-7 JULY 2021</span> </h4>
+
             </AppBar>
 
             <Switch>

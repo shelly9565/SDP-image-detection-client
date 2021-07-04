@@ -6,6 +6,20 @@ export default makeStyles({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    backgroundColor: '#f8f9fb',
+    backgroundColor: '#1d2328',
+    color: '#ea9164'
   },
+  logoImage: {
+    marginTop: '7px'
+  },
+  whiteText: {
+    color: '#EEF0F1'
+  },
+  title: {
+    fontWeight: '300'
+  },
+  tab: {
+    fontSize: '18px',
+    marginTop: '3px'
+  }
 });

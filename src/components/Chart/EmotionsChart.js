@@ -17,13 +17,13 @@ const EmotionsChart = ({ posts }) => {
       )
         happy++;
     });
-<<<<<<< HEAD
     console.log(`happy`, happy)
-=======
->>>>>>> 2e9c1d9c92a5e652f028c4805a90e6f265813171
     setHappinessRatio(happy / posts.length);
   }, [posts]);
+  useEffect(() => {
+    console.log(`happinessRatio`, happinessRatio)
 
+  }, [happinessRatio])
   return (
     <Grid container justify="center">
       <div className={classes.gaugeChartContainer}>
@@ -32,8 +32,8 @@ const EmotionsChart = ({ posts }) => {
           className={classes.gaugeChart}
           nrOfLevels={20}
           percent={happinessRatio}
-          colors={['#3f51b5', '#f50057']}
-          textColor={'#464A4F'}
+          colors={['#d85a6d', '#9fcd61']}
+          textColor={'#EA9164'}
           animDelay={0}
           formatTextValue={(value) => value + '% Happy'}
         />

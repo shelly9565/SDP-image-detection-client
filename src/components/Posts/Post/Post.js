@@ -8,34 +8,16 @@ const Post = ({ post }) => {
   const classes = useStyles();
 
   return (
-    <Card className={classes.card}>
-      <CardMedia
-        className={classes.media}
-        image={
-          post.url ||
-          'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png'
-        }
-      />
+    <img
+      className={classes.image}
+      src={
+        post.url ||
+        'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png'
+      }
+    />
 
 
 
-      {post.data.face_detection && <CardContent className={classes.details}>
-        <Typography variant="body2" color="primary">
-          {(
-            post.data.face_detection.faceAttributes.emotion.sadness * 100
-          ).toFixed(1)}
-          % 🙁
-        </Typography>
-
-        <Typography variant="body2" color="secondary">
-          🙂{' '}
-          {(
-            post.data.face_detection.faceAttributes.emotion.happiness * 100
-          ).toFixed(1)}
-          %
-        </Typography>
-      </CardContent>}
-    </Card>
   );
 };
 

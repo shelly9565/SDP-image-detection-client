@@ -5,9 +5,14 @@ export default makeStyles({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    borderRadius: '15px',
     height: '100%',
     position: 'relative',
+  },
+  image: {
+    margin: '7px',
+    width: '200px',
+    height: '200px',
+    objectFit: 'cover'
   },
   media: {
     paddingTop: '175%',
