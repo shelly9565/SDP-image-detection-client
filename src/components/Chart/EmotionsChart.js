@@ -17,7 +17,10 @@ const EmotionsChart = ({ posts }) => {
       )
         happy++;
     });
+<<<<<<< HEAD
     console.log(`happy`, happy)
+=======
+>>>>>>> 2e9c1d9c92a5e652f028c4805a90e6f265813171
     setHappinessRatio(happy / posts.length);
   }, [posts]);
 
